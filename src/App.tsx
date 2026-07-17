@@ -1,10 +1,18 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import Register from "./pages/user/Register";
 
 function App() {
   return (
-    <>
-      <h1 className="text-blue-500">Hello</h1>
-    </>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
