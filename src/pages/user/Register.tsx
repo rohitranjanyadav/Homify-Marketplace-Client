@@ -2,7 +2,7 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { registerUser } from "../../store/authSlice";
 import { Status } from "../../globals/types/type";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   const { status } = useAppSelector((store) => store.auth);
@@ -44,7 +44,7 @@ function Register() {
           />
 
           <h2 className="my-3 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Sign up htmlFor an account
+            Sign up for an account
           </h2>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
@@ -112,6 +112,9 @@ function Register() {
                 Register Account
               </button>
             </div>
+            <p className="text-blue-500">
+              Already have an account? <Link to="/login">Go to login page</Link>
+            </p>
           </form>
         </div>
       </div>
