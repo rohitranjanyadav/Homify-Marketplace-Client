@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type SubmitEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { registerUser } from "../../store/authSlice";
 import { Status } from "../../globals/types/type";
@@ -20,7 +20,7 @@ function Register() {
       [name]: value,
     });
   };
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(registerUser(data));
   };
@@ -31,7 +31,7 @@ function Register() {
     } else if (status === Status.ERROR) {
       alert("Something went wrong");
     }
-  }, [status]);
+  }, [status, navigate]);
 
   return (
     <div className="bg-gray-100 flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">

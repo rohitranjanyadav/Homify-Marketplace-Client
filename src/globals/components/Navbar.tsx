@@ -9,7 +9,7 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const categories = [
-    { label: "Sofas", to: "/" },
+    { label: "Products", to: "/products" },
     { label: "Beds", to: "/" },
     { label: "Tables", to: "/" },
     { label: "Decor", to: "/" },
