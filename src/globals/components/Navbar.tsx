@@ -22,7 +22,7 @@ function Navbar() {
   }, [localStorageToken, reduxToken]);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur-sm">
+    <nav className="sticky inset-x-0 top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#8b6f47] text-sm font-semibold text-white">
