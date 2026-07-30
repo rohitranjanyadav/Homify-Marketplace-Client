@@ -3,7 +3,7 @@ import type { IProduct, IProducts } from "../pages/product/types";
 import { Status } from "../globals/types/type";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch, RootState } from "./store";
-import API from "../http";
+import { API } from "../http";
 
 const initialState: IProducts = {
   products: [],

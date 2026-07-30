@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useEffect, useState } from "react";
+import { fetchCartItems } from "../../store/cartSlice";
 
 function Navbar() {
   const reduxToken = useAppSelector((store) => store.auth.user.token);
+  const { items } = useAppSelector((store) => store.cart);
   const localStorageToken = localStorage.getItem("token");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
   const categories = [
     { label: "Products", to: "/products" },
@@ -19,7 +22,10 @@ function Navbar() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoggedIn(!!localStorageToken || !!reduxToken);
-  }, [localStorageToken, reduxToken]);
+    if (isLoggedIn) {
+      dispatch(fetchCartItems());
+    }
+  }, [isLoggedIn]);
 
   return (
     <nav className="sticky inset-x-0 top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur-sm">
@@ -52,12 +58,19 @@ function Navbar() {
 
         <div className="flex items-center gap-2 sm:gap-3">
           {isLoggedIn ? (
-            <Link
-              to="/logout"
-              className="hidden rounded-full px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-900 sm:inline-flex"
-            >
-              Logout
-            </Link>
+            <>
+              <span className="mr-2.5">
+                <Link to="/my-cart">
+                  Cart <sup>{items.length > 0 ? items.length : 0}</sup>
+                </Link>
+              </span>
+              <Link
+                to="/logout"
+                className="hidden rounded-full px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-900 sm:inline-flex"
+              >
+                Logout
+              </Link>
+            </>
           ) : (
             <>
               <Link
@@ -101,9 +114,7 @@ function Navbar() {
           </button>
         </div>
 
-        <div
-          className={`w-full md:hidden ${isMenuOpen ? "block" : "hidden"}`}
-        >
+        <div className={`w-full md:hidden ${isMenuOpen ? "block" : "hidden"}`}>
           <div className="mt-2 flex flex-wrap gap-2 rounded-2xl border border-neutral-200 bg-white p-3 shadow-sm">
             {categories.map((category) => (
               <Link

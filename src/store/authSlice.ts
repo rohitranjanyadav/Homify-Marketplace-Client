@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Status } from "../globals/types/type";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import API from "../http";
 import type { AppDispatch } from "./store";
+import { API } from "../http";
 
 interface ILoginUser {
   email: string;
