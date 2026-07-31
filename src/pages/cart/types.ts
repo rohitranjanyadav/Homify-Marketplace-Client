@@ -9,7 +9,7 @@ export interface ICartProduct {
 
 export interface ICartItem {
   id: string;
-  quantity: string;
+  quantity: number;
   productId: string;
   Product: ICartProduct;
 }
@@ -17,4 +17,9 @@ export interface ICartItem {
 export interface ICartInitialState {
   items: ICartItem[];
   status: Status;
+}
+
+export interface ICartUpdateItem {
+  productId: string;
+  quantity: number;
 }

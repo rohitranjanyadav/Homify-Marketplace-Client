@@ -1,8 +1,34 @@
 import Navbar from "../../globals/components/Navbar";
-import { useAppSelector } from "../../store/hooks";
+import {
+  handleCartItemDelete,
+  handleCartItemUpdate,
+} from "../../store/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 function MyCart() {
   const { items } = useAppSelector((store) => store.cart);
+  const dispatch = useAppDispatch();
+
+  const handleUpdate = (productId: string, quantity: number) => {
+    dispatch(handleCartItemUpdate(productId, quantity));
+  };
+  const handleDelete = (productId: string) => {
+    dispatch(handleCartItemDelete(productId));
+  };
+
+  const subTotal = items.reduce(
+    (total, item) => item.Product.productPrice * item.quantity + total,
+    0,
+  );
+
+  const totalQtyInCart = items.reduce(
+    (total, item) => item.quantity + total,
+    0,
+  );
+
+  const shippingCharge = 100;
+
+  const total = subTotal + shippingCharge;
   return (
     <>
       <Navbar />
@@ -43,16 +69,46 @@ function MyCart() {
                             </td>
                             <td className="py-4">
                               <div className="flex items-center">
-                                <button className="border rounded-md py-2 px-4 mr-2">
+                                <button
+                                  className="border rounded-md py-2 px-4 mr-2"
+                                  onClick={() =>
+                                    handleUpdate(
+                                      item.Product.id,
+                                      item.quantity - 1,
+                                    )
+                                  }
+                                >
                                   -
                                 </button>
-                                <span className="text-center w-8">1</span>
-                                <button className="border rounded-md py-2 px-4 ml-2">
+                                <span className="text-center w-8">
+                                  {item.quantity}
+                                </span>
+                                <button
+                                  className="border rounded-md py-2 px-4 ml-2"
+                                  onClick={() =>
+                                    handleUpdate(
+                                      item.Product.id,
+                                      item.quantity + 1,
+                                    )
+                                  }
+                                >
                                   +
                                 </button>
                               </div>
                             </td>
-                            <td className="py-4">$19.99</td>
+                            <td className="py-4">
+                              Rs. ${item.Product.productPrice * item?.quantity}
+                            </td>
+                            <td className="py-4">
+                              <div className="flex items-center">
+                                <button
+                                  className="border rounded-md py-2 px-4 mr-2 bg-red-500 hover:bg-red-800 text-white text-2xl"
+                                  onClick={() => handleDelete(item.Product.id)}
+                                >
+                                  X
+                                </button>
+                              </div>
+                            </td>
                           </tr>
                         );
                       })}
@@ -65,20 +121,20 @@ function MyCart() {
                 <h2 className="text-lg font-semibold mb-4">Summary</h2>
                 <div className="flex justify-between mb-2">
                   <span>Subtotal</span>
-                  <span>$19.99</span>
+                  <span>Rs. {subTotal}</span>
                 </div>
                 <div className="flex justify-between mb-2">
-                  <span>Taxes</span>
-                  <span>$1.99</span>
+                  <span>Total Quantity</span>
+                  <span>{totalQtyInCart}</span>
                 </div>
                 <div className="flex justify-between mb-2">
-                  <span>Shipping</span>
-                  <span>$0.00</span>
+                  <span>Shipping Charge</span>
+                  <span>Rs. {shippingCharge}</span>
                 </div>
                 <hr className="my-2" />
                 <div className="flex justify-between mb-2">
                   <span className="font-semibold">Total</span>
-                  <span className="font-semibold">$21.98</span>
+                  <span className="font-semibold">Rs. {total}</span>
                 </div>
                 <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">
                   Checkout
