@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "../../globals/components/Navbar";
 import {
   handleCartItemDelete,
@@ -136,9 +137,11 @@ function MyCart() {
                   <span className="font-semibold">Total</span>
                   <span className="font-semibold">Rs. {total}</span>
                 </div>
-                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">
-                  Checkout
-                </button>
+                <Link to={"/my-checkout"}>
+                  <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">
+                    Checkout
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
