@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FormEvent, useState } from "react";
+import { type ChangeEvent, useState } from "react";
 import Navbar from "../../globals/components/Navbar";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { type IData, PaymentMethod } from "./types";
@@ -31,7 +31,7 @@ function Checkout() {
       [name]: value,
     });
   };
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const productData =
       items.length > 0

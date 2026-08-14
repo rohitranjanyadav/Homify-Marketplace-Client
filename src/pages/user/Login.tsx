@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loginUser } from "../../store/authSlice";
 import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(loginUser(data));
   };
