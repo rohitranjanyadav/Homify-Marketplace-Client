@@ -33,11 +33,11 @@ export function orderItem(data: IData) {
   return async function orderItemThunk(dispatch: AppDispatch) {
     try {
       const response = await APIWITHTOKEN.post("/order", data);
-      if (response.status === 200) {
+      if (response.status >= 200 && response.status < 300) {
         dispatch(setStatus(Status.SUCCESS));
         dispatch(setItems(response.data.data));
         if (response.data.url) {
-          setKhaltiUrl(response.data.url);
+          dispatch(setKhaltiUrl(response.data.url));
         }
       } else {
         dispatch(setStatus(Status.ERROR));
