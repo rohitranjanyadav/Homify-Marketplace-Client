@@ -7,31 +7,30 @@ interface ICardProps {
 
 const Card: React.FC<ICardProps> = ({ product }) => {
   return (
-    <Link to={`/products/${product.id}`}>
-      <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
+    <Link to={`/products/${product.id}`} className="group block w-full max-w-sm">
+      <div className="overflow-hidden rounded-2xl border border-[#e8ddd1] bg-[#fffdf9] shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#69462d]/10">
           <img
             src={`http://localhost:4000/${product.productImageUrl}`}
             alt="Product"
-            className="h-80 w-72 object-cover rounded-t-xl"
+            className="h-80 w-full object-cover transition duration-500 group-hover:scale-105"
           />
-          <div className="px-4 py-3 w-72">
-            <span className="text-gray-400 mr-3 uppercase text-xs">
+          <div className="px-5 py-4">
+            <span className="mr-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#a65f3b]">
               {product.Category.categoryName}
             </span>
-            <p className="text-lg font-bold text-black truncate block capitalize">
+            <p className="mt-1 block truncate font-serif text-xl font-semibold capitalize text-[#29221d]">
               {product.productName}
             </p>
             <div className="flex items-center">
-              <p className="text-lg font-semibold text-black cursor-auto my-3">
+              <p className="my-3 text-lg font-semibold text-[#29221d]">
                 Rs. {product.productPrice}
               </p>
               <del>
-                <p className="text-sm text-gray-600 cursor-auto ml-2">
+                <p className="ml-2 text-sm text-[#9a8778]">
                   Rs. {product.discount}
                 </p>
               </del>
-              <div className="ml-auto">
+              <div className="ml-auto rounded-full bg-[#f2e8de] p-2 text-[#875438] transition group-hover:bg-[#a65f3b] group-hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={20}
@@ -49,7 +48,6 @@ const Card: React.FC<ICardProps> = ({ product }) => {
               </div>
             </div>
           </div>
-        </a>
       </div>
     </Link>
   );

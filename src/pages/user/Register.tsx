@@ -34,16 +34,13 @@ function Register() {
   }, [status, navigate]);
 
   return (
-    <div className="bg-gray-100 flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div className="flex min-h-screen items-center justify-center bg-[#f7f3ed] px-4 py-8 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
-        <div className="bg-white shadow-md rounded-md p-6">
-          <img
-            className="mx-auto h-12 w-auto"
-            src="https://www.svgrepo.com/show/499664/user-happy.svg"
-            alt=""
-          />
+        <div className="rounded-3xl border border-[#e7dbcf] bg-[#fffdf9] p-8 shadow-xl shadow-[#69462d]/10">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#7c5738] font-serif text-2xl text-white">h</div>
 
-          <h2 className="my-3 text-center text-3xl font-bold tracking-tight text-gray-900">
+          <p className="mt-5 text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a65f3b]">Create your Homify account</p>
+          <h2 className="my-3 text-center font-serif text-3xl font-semibold tracking-tight text-[#29221d]">
             Sign up for an account
           </h2>
 
@@ -60,7 +57,7 @@ function Register() {
                   name="username"
                   type="username"
                   required
-                  className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                  className="mt-1 block w-full rounded-xl border border-[#dfcebe] bg-[#fffdf9] px-3 py-3 text-sm outline-none transition focus:border-[#a65f3b]"
                   onChange={handleChange}
                 />
               </div>
@@ -79,7 +76,7 @@ function Register() {
                   type="email-address"
                   autoComplete="email-address"
                   required
-                  className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                  className="mt-1 block w-full rounded-xl border border-[#dfcebe] bg-[#fffdf9] px-3 py-3 text-sm outline-none transition focus:border-[#a65f3b]"
                   onChange={handleChange}
                 />
               </div>
@@ -98,7 +95,7 @@ function Register() {
                   type="password"
                   autoComplete="password"
                   required
-                  className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+                  className="mt-1 block w-full rounded-xl border border-[#dfcebe] bg-[#fffdf9] px-3 py-3 text-sm outline-none transition focus:border-[#a65f3b]"
                   onChange={handleChange}
                 />
               </div>
@@ -107,13 +104,13 @@ function Register() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+                className="flex w-full justify-center rounded-full bg-[#a65f3b] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#864a2c]"
               >
                 Register Account
               </button>
             </div>
-            <p className="text-blue-500">
-              Already have an account? <Link to="/login">Go to login page</Link>
+            <p className="text-center text-sm text-[#755f4f]">
+              Already have an account? <Link className="font-semibold text-[#a65f3b]" to="/login">Sign in</Link>
             </p>
           </form>
         </div>

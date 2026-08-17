@@ -73,9 +73,9 @@ function Checkout() {
   return (
     <>
       <Navbar />
-      <div className="font-[sans-serif] bg-white">
+      <div className="font-[sans-serif] bg-[#f7f3ed]">
         <div className="flex max-sm:flex-col gap-12 max-lg:gap-4 h-full">
-          <div className="bg-gray-100 sm:h-screen sm:sticky sm:top-0 lg:min-w-92.5 sm:min-w-75">
+          <div className="border-r border-[#e7dbcf] bg-[#f1e7dc] sm:h-screen sm:sticky sm:top-0 lg:min-w-92.5 sm:min-w-75">
             <div className="relative h-full">
               <div className="px-4 py-8 sm:overflow-auto sm:h-[calc(100vh-60px)]">
                 <div className="space-y-4">
@@ -83,7 +83,7 @@ function Checkout() {
                     items.map((item) => {
                       return (
                         <div className="flex items-start gap-4" key={item.id}>
-                          <div className="w-32 h-28 max-lg:w-24 max-lg:h-24 flex p-3 shrink-0 bg-gray-200 rounded-md">
+                          <div className="flex h-28 w-32 shrink-0 rounded-xl bg-[#e0cebd] p-3 max-lg:h-24 max-lg:w-24">
                             <img
                               src={`http://localhost:4000/${item.Product?.productImageUrl}`}
                               className="w-full object-contain"
@@ -117,15 +117,16 @@ function Checkout() {
                   )}
                 </div>
               </div>
-              <div className="md:absolute md:left-0 md:bottom-0 bg-gray-200 w-full p-4">
+              <div className="w-full bg-[#e0cebd] p-4 md:absolute md:bottom-0 md:left-0">
                 <h4 className="flex flex-wrap gap-4 text-sm lg:text-base text-gray-800">
                   Total <span className="ml-auto">Rs. {total}</span>
                 </h4>
               </div>
             </div>
           </div>
-          <div className="max-w-4xl w-full h-max rounded-md px-4 py-8 sticky top-0">
-            <h2 className="text-2xl font-bold text-gray-800">
+          <div className="sticky top-0 h-max w-full max-w-4xl rounded-md px-6 py-10">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#a65f3b]">Almost home</p>
+            <h2 className="font-serif text-4xl font-semibold text-[#29221d]">
               Complete your order
             </h2>
             <form className="mt-8" onSubmit={handleSubmit}>
@@ -140,7 +141,7 @@ function Checkout() {
                       name="firstName"
                       onChange={handleChange}
                       placeholder="First Name"
-                      className="px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md focus:outline-blue-600"
+                      className="w-full rounded-xl border border-transparent bg-[#fffdf9] px-4 py-3 text-sm text-[#423129] outline-none transition focus:border-[#caa98e]"
                     />
                   </div>
                   <div>
@@ -149,7 +150,7 @@ function Checkout() {
                       name="lastName"
                       onChange={handleChange}
                       placeholder="Last Name"
-                      className="px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md focus:outline-blue-600"
+                      className="w-full rounded-xl border border-transparent bg-[#fffdf9] px-4 py-3 text-sm text-[#423129] outline-none transition focus:border-[#caa98e]"
                     />
                   </div>
                   <div>
@@ -158,7 +159,7 @@ function Checkout() {
                       name="email"
                       onChange={handleChange}
                       placeholder="Email"
-                      className="px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md focus:outline-blue-600"
+                      className="w-full rounded-xl border border-transparent bg-[#fffdf9] px-4 py-3 text-sm text-[#423129] outline-none transition focus:border-[#caa98e]"
                     />
                   </div>
                   <div>
@@ -167,7 +168,7 @@ function Checkout() {
                       name="phoneNumber"
                       onChange={handleChange}
                       placeholder="Phone No."
-                      className="px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md focus:outline-blue-600"
+                      className="w-full rounded-xl border border-transparent bg-[#fffdf9] px-4 py-3 text-sm text-[#423129] outline-none transition focus:border-[#caa98e]"
                     />
                   </div>
                 </div>
@@ -183,12 +184,12 @@ function Checkout() {
                       name="shippingAddress"
                       onChange={handleChange}
                       placeholder="Address Line"
-                      className="px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md focus:outline-blue-600"
+                      className="w-full rounded-xl border border-transparent bg-[#fffdf9] px-4 py-3 text-sm text-[#423129] outline-none transition focus:border-[#caa98e]"
                     />
                   </div>
                   <div>
                     <label htmlFor="paymentMethod">Payment Method:</label>
-                    <select
+                    <select className="mt-1 w-full rounded-xl border border-[#dfcebe] bg-[#fffdf9] px-4 py-3 text-sm text-[#423129] outline-none"
                       name=""
                       id="paymentMethod"
                       onChange={(e) =>
@@ -208,7 +209,7 @@ function Checkout() {
                   {paymentMethod === PaymentMethod.Cod && (
                     <button
                       type="submit"
-                      className="rounded-md px-4 py-2.5 w-full text-sm tracking-wide bg-blue-600 hover:bg-blue-700 text-white"
+                      className="w-full rounded-full bg-[#a65f3b] px-4 py-3 text-sm font-semibold tracking-wide text-white transition hover:bg-[#864a2c]"
                     >
                       Complete Purchase(Cash On Delivery)
                     </button>
@@ -216,7 +217,7 @@ function Checkout() {
                   {paymentMethod === PaymentMethod.Khalti && (
                     <button
                       type="submit"
-                      className="rounded-md px-4 py-2.5 w-full text-sm tracking-wide bg-purple-600 hover:bg-purple-700 text-white"
+                      className="w-full rounded-full bg-[#7055a0] px-4 py-3 text-sm font-semibold tracking-wide text-white transition hover:bg-[#584181]"
                     >
                       Pay With Khalti
                     </button>
@@ -224,7 +225,7 @@ function Checkout() {
                   {paymentMethod === PaymentMethod.Esewa && (
                     <button
                       type="submit"
-                      className="rounded-md px-4 py-2.5 w-full text-sm tracking-wide bg-green-600 hover:bg-green-700 text-white"
+                      className="w-full rounded-full bg-[#3d8853] px-4 py-3 text-sm font-semibold tracking-wide text-white transition hover:bg-[#2f6b40]"
                     >
                       Pay With Esewa
                     </button>

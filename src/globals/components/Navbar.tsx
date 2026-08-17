@@ -28,18 +28,18 @@ function Navbar() {
   }, [isLoggedIn]);
 
   return (
-    <nav className="sticky inset-x-0 top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur-sm">
+    <nav className="sticky inset-x-0 top-0 z-20 border-b border-[#e6dbcf] bg-[#fffdf9]/95 shadow-[0_2px_18px_rgba(61,42,28,0.04)] backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#8b6f47] text-sm font-semibold text-white">
-            H
+          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#7c5738] text-lg font-serif font-semibold text-white shadow-sm">
+            h
           </span>
           <div className="leading-tight">
-            <span className="block text-base font-semibold tracking-wide text-neutral-900">
+            <span className="block font-serif text-xl font-semibold tracking-wide text-[#29221d]">
               Homify
             </span>
-            <span className="block text-xs text-neutral-500">
-              Furniture & household items
+            <span className="block text-[10px] font-medium uppercase tracking-[0.16em] text-[#8a7463]">
+              Made for living
             </span>
           </div>
         </Link>
@@ -49,7 +49,7 @@ function Navbar() {
             <Link
               key={category.label}
               to={category.to}
-              className="whitespace-nowrap rounded-full px-4 py-2 font-medium text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900"
+              className="whitespace-nowrap rounded-full px-4 py-2 font-medium text-[#765f4f] transition hover:bg-[#f3ece3] hover:text-[#29221d]"
             >
               {category.label}
             </Link>
@@ -59,14 +59,14 @@ function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           {isLoggedIn ? (
             <>
-              <span className="mr-2.5">
-                <Link to="/my-cart">
-                  Cart <sup>{items.length > 0 ? items.length : 0}</sup>
+              <span className="mr-2.5 rounded-full border border-[#e6dbcf] px-3 py-2 text-sm font-medium text-[#5f4939] transition hover:bg-[#f7f0e8]">
+                <Link to="/my-cart" className="flex items-center gap-1.5">
+                  Bag <sup className="rounded-full bg-[#a65f3b] px-1.5 text-[10px] text-white">{items.length > 0 ? items.length : 0}</sup>
                 </Link>
               </span>
               <Link
                 to="/logout"
-                className="hidden rounded-full px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-900 sm:inline-flex"
+                className="hidden rounded-full px-4 py-2 text-sm font-medium text-[#5f4939] transition hover:bg-[#f3ece3] hover:text-[#29221d] sm:inline-flex"
               >
                 Logout
               </Link>
@@ -75,13 +75,13 @@ function Navbar() {
             <>
               <Link
                 to="/register"
-                className="hidden rounded-full bg-[#8b6f47] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#715839] sm:inline-flex"
+                className="hidden rounded-full border border-[#d8c2aa] px-4 py-2 text-sm font-medium text-[#6e4d33] transition hover:bg-[#f5ede4] sm:inline-flex"
               >
                 Sign up
               </Link>
               <Link
                 to="/login"
-                className="hidden rounded-full bg-[#8b6f47] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#715839] sm:inline-flex"
+                className="hidden rounded-full bg-[#a65f3b] px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-[#864a2c] sm:inline-flex"
               >
                 Login
               </Link>
@@ -91,7 +91,7 @@ function Navbar() {
           <button
             type="button"
             onClick={() => setIsMenuOpen((current) => !current)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-900 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e6dbcf] text-[#5f4939] transition hover:bg-[#f3ece3] hover:text-[#29221d] md:hidden"
             aria-label="Toggle categories"
             aria-expanded={isMenuOpen}
           >
@@ -115,13 +115,13 @@ function Navbar() {
         </div>
 
         <div className={`w-full md:hidden ${isMenuOpen ? "block" : "hidden"}`}>
-          <div className="mt-2 flex flex-wrap gap-2 rounded-2xl border border-neutral-200 bg-white p-3 shadow-sm">
+          <div className="mt-2 flex flex-wrap gap-2 rounded-2xl border border-[#e6dbcf] bg-[#fffdf9] p-3 shadow-lg shadow-[#4a3020]/5">
             {categories.map((category) => (
               <Link
                 key={category.label}
                 to={category.to}
                 onClick={() => setIsMenuOpen(false)}
-                className="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-200"
+                className="rounded-full bg-[#f3ece3] px-4 py-2 text-sm font-medium text-[#5f4939] transition hover:bg-[#eadaca]"
               >
                 {category.label}
               </Link>
@@ -131,14 +131,14 @@ function Navbar() {
                 <Link
                   to="/login"
                   onClick={() => setIsMenuOpen(false)}
-                  className="rounded-full bg-[#8b6f47] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#715839]"
+                  className="rounded-full bg-[#a65f3b] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#864a2c]"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
                   onClick={() => setIsMenuOpen(false)}
-                  className="rounded-full bg-[#8b6f47] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#715839]"
+                  className="rounded-full bg-[#a65f3b] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#864a2c]"
                 >
                   Sign up
                 </Link>
@@ -147,7 +147,7 @@ function Navbar() {
               <Link
                 to="/logout"
                 onClick={() => setIsMenuOpen(false)}
-                className="rounded-full px-4 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-900"
+                className="rounded-full px-4 py-2 text-sm font-medium text-[#5f4939] transition hover:bg-[#f3ece3] hover:text-[#29221d]"
               >
                 Logout
               </Link>
