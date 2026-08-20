@@ -61,7 +61,7 @@ function Navbar() {
             <>
               <span className="mr-2.5 rounded-full border border-[#e6dbcf] px-3 py-2 text-sm font-medium text-[#5f4939] transition hover:bg-[#f7f0e8]">
                 <Link to="/my-cart" className="flex items-center gap-1.5">
-                  Bag <sup className="rounded-full bg-[#a65f3b] px-1.5 text-[10px] text-white">{items.length > 0 ? items.length : 0}</sup>
+                  Bag <sup className="rounded-full bg-[#a65f3b] px-1.5 text-[10px] text-gray-600">{items.length > 0 ? items.length : 0}</sup>
                 </Link>
               </span>
               <Link

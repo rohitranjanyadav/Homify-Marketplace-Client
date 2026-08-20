@@ -3,9 +3,16 @@ import { Status } from "../../globals/types/type";
 interface IProduct {
   productId: string;
   productQty: number;
+  orderStatus?: string;
+  totalAmount?: number;
+  Payment: {
+    paymentMethod: PaymentMethod,
+    
+  };
 }
+
 export interface IOrderItems extends IProduct {
-  orderId: string;
+  id: string;
 }
 
 export interface IOrder {
