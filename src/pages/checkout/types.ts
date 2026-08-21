@@ -1,4 +1,5 @@
 import { Status } from "../../globals/types/type";
+import type { IOrderDetail } from "../my-order-details/types";
 
 interface IProduct {
   productId: string;
@@ -6,8 +7,7 @@ interface IProduct {
   orderStatus?: string;
   totalAmount?: number;
   Payment: {
-    paymentMethod: PaymentMethod,
-    
+    paymentMethod: PaymentMethod;
   };
 }
 
@@ -19,6 +19,7 @@ export interface IOrder {
   status: Status;
   items: IOrderItems[];
   khaltiUrl: string | null;
+  orderDetails: IOrderDetail[];
 }
 
 export const PaymentMethod = {
