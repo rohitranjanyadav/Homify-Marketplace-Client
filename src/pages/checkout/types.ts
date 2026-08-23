@@ -6,13 +6,14 @@ interface IProduct {
   productQty: number;
   orderStatus?: string;
   totalAmount?: number;
-  Payment: {
+  Payment?: {
     paymentMethod: PaymentMethod;
   };
 }
 
 export interface IOrderItems extends IProduct {
   id: string;
+  orderId: string;
 }
 
 export interface IOrder {

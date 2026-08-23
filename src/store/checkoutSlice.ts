@@ -3,7 +3,10 @@ import type { IData, IOrder, IOrderItems } from "../pages/checkout/types";
 import { Status } from "../globals/types/type";
 import { type AppDispatch } from "./store";
 import { APIWITHTOKEN } from "../http";
-import type { IOrderDetail } from "../pages/my-order-details/types";
+import {
+  OrderStatus,
+  type IOrderDetail,
+} from "../pages/my-order-details/types";
 
 const initialState: IOrder = {
   status: Status.LOADING,
@@ -28,11 +31,29 @@ const orderSlice = createSlice({
     setKhaltiUrl(state: IOrder, action: PayloadAction<string>) {
       state.khaltiUrl = action.payload;
     },
+    updateOrderStatus(
+      state: IOrder,
+      action: PayloadAction<{ orderId: string }>,
+    ) {
+      const orderId = action.payload.orderId;
+
+      const data = state.orderDetails.find((order) => order.orderId === orderId);
+
+      if (data) {
+        data.Order.orderStatus = OrderStatus.Cancelled;
+      }
+    },
   },
 });
 
 export default orderSlice.reducer;
-const { setItems, setStatus, setKhaltiUrl,setOrderDetails } = orderSlice.actions;
+const {
+  setItems,
+  setStatus,
+  setKhaltiUrl,
+  setOrderDetails,
+  updateOrderStatus,
+} = orderSlice.actions;
 
 export function orderItem(data: IData) {
   return async function orderItemThunk(dispatch: AppDispatch) {
@@ -79,6 +100,24 @@ export function fetchMyOrderDetails(id: string) {
       if (response.status === 200) {
         dispatch(setStatus(Status.SUCCESS));
         dispatch(setOrderDetails(response.data.data));
+      } else {
+        dispatch(setStatus(Status.ERROR));
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(setStatus(Status.ERROR));
+    }
+  };
+}
+
+export function cancelOrderAPI(id: string) {
+  return async function cancelOrderAPIThunk(dispatch: AppDispatch) {
+    try {
+      const response = await APIWITHTOKEN.patch("/order/cancel-order/" + id);
+
+      if (response.status === 200) {
+        dispatch(setStatus(Status.SUCCESS));
+        dispatch(updateOrderStatus({ orderId: id }));
       } else {
         dispatch(setStatus(Status.ERROR));
       }

@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../globals/components/Navbar";
-import { fetchMyOrderDetails } from "../../store/checkoutSlice";
+import { cancelOrderAPI, fetchMyOrderDetails } from "../../store/checkoutSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { OrderStatus } from "./types";
 
 function MyOrderDetail() {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const { orderDetails } = useAppSelector((store) => store.orders);
+
 
   const currentOrder = orderDetails[0]?.Order;
   const subtotal = orderDetails.reduce(
@@ -20,6 +22,12 @@ function MyOrderDetail() {
       dispatch(fetchMyOrderDetails(id));
     }
   }, [dispatch, id]);
+
+  const cancelOrder = () => {
+    if (id) {
+      dispatch(cancelOrderAPI(id));
+    }
+  };
 
   if (!orderDetails.length) {
     return (
@@ -58,7 +66,7 @@ function MyOrderDetail() {
                 </p>
               </div>
               <span className="inline-flex w-fit items-center rounded-full bg-[#f4e9de] px-3 py-2 text-sm font-medium text-[#6d4836]">
-                {currentOrder?.orderStatus}
+                {orderDetails[0]?.Order?.orderStatus}
               </span>
             </div>
           </div>
@@ -71,7 +79,8 @@ function MyOrderDetail() {
                     Items in this order
                   </h2>
                   <span className="text-sm text-[#5d4d44]">
-                    {orderDetails.length} item{orderDetails.length > 1 ? "s" : ""}
+                    {orderDetails.length} item
+                    {orderDetails.length > 1 ? "s" : ""}
                   </span>
                 </div>
 
@@ -127,7 +136,9 @@ function MyOrderDetail() {
                   </div>
                   <div className="flex items-center justify-between border-t border-[#e8ddd1] pt-3 text-base font-semibold text-[#1f1a17]">
                     <span>Total</span>
-                    <span>Rs. {currentOrder?.totalAmount ?? subtotal + 100}</span>
+                    <span>
+                      Rs. {currentOrder?.totalAmount ?? subtotal + 100}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -172,9 +183,15 @@ function MyOrderDetail() {
                 </div>
               </div>
 
-              <button className="mt-6 w-full rounded-full bg-[#a65f3b] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#864a2c]">
-                Track order
-              </button>
+              {orderDetails[0]?.Order?.orderStatus !==
+                OrderStatus?.Cancelled && (
+                <button
+                  onClick={cancelOrder}
+                  className="mt-6 w-full rounded-full bg-[#a65f3b] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#864a2c]"
+                >
+                  Cancel order
+                </button>
+              )}
             </aside>
           </div>
         </div>
