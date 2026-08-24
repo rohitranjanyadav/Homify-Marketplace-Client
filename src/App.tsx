@@ -11,6 +11,9 @@ import MyCart from "./pages/cart/my-cart";
 import Checkout from "./pages/checkout/Checkout";
 import MyOrder from "./my-orders/MyOrder";
 import MyOrderDetail from "./pages/my-order-details/MyOrderDetail";
+import Categories from "./pages/admin/components/categories/Categories";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminStats from "./pages/admin/stats/AdminStats";
 
 function App() {
   return (
@@ -26,6 +29,8 @@ function App() {
           <Route path="/my-checkout" element={<Checkout />} />
           <Route path="/my-orders" element={<MyOrder />} />
           <Route path="/my-orders/:id" element={<MyOrderDetail />} />
+          <Route path="/admin" element={<AdminStats />} />
+          <Route path="/admin/categories" element={<Categories />} />
         </Routes>
       </BrowserRouter>
     </Provider>
