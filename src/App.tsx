@@ -12,7 +12,6 @@ import Checkout from "./pages/checkout/Checkout";
 import MyOrder from "./my-orders/MyOrder";
 import MyOrderDetail from "./pages/my-order-details/MyOrderDetail";
 import Categories from "./pages/admin/components/categories/Categories";
-import AdminLayout from "./pages/admin/AdminLayout";
 import AdminStats from "./pages/admin/stats/AdminStats";
 
 function App() {
