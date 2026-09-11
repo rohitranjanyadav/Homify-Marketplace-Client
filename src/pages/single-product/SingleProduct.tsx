@@ -81,7 +81,7 @@ function SingleProduct() {
               </div>
               <div className="mb-4">
                 <span className="inline-block rounded-full bg-[#f2e7db] px-3 py-1 text-sm font-medium text-[#805038]">
-                  Category : {product?.Category.categoryName}
+                  Category : {product?.Category?.categoryName ?? "Uncategorized"}
                 </span>
               </div>
 

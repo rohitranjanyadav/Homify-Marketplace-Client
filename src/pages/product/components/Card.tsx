@@ -16,7 +16,7 @@ const Card: React.FC<ICardProps> = ({ product }) => {
           />
           <div className="px-5 py-4">
             <span className="mr-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#a65f3b]">
-              {product.Category.categoryName}
+              {product.Category?.categoryName ?? "Uncategorized"}
             </span>
             <p className="mt-1 block truncate font-serif text-xl font-semibold capitalize text-[#29221d]">
               {product.productName}

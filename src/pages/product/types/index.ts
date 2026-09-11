@@ -16,7 +16,7 @@ export interface IProduct {
   createdAt: string;
   updatedAt: string;
   categoryId: string;
-  Category: ICategory;
+  Category: ICategory | null;
 }
 
 export interface IProducts {
